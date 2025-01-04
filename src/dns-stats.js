@@ -37,7 +37,6 @@ function getDNSStats(domains) {
     for (let i = 0; i < reg.length; i++) {
       if (el.match(reg[i]) !== null) {
         if (acc.hasOwnProperty(reverse(el.match(reg[i])[1]))) {
-          console.log(reverse(el.match(reg[i])[1]));
           acc[reverse(el.match(reg[i])[1])] += 1;
         } else {
           acc[reverse(el.match(reg[i])[1])] = 1;
