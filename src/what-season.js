@@ -15,13 +15,20 @@ function getSeason(date) {
   // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
   const seasons = ['spring', 'summer', 'autumn', 'winter'];
-  console.log(date);
-  if (date == null || date == undefined) {
+
+  if (date === null || date === undefined) {
     return 'Unable to determine the time of year!';
   }
-  if (isNaN(date) || typeof date.getMonth !== 'function')
+  // if (
+  //   typeof date === 'number' ||
+  //   typeof date === 'string' ||
+  //   typeof date === 'function'
+  // )
+  //   throw new Error('Invalid date!');
+
+  if (!(date instanceof Date) || date.hasOwnProperty('toString') === true)
     throw new Error('Invalid date!');
-  if (!date instanceof Date) throw new Error('Invalid date!');
+  console.log(date);
   if (date.getMonth() >= 2 && date.getMonth() <= 4) {
     return seasons[0];
   }
@@ -33,9 +40,6 @@ function getSeason(date) {
   }
   if (date.getMonth() == 11 || date.getMonth() == 0 || date.getMonth() == 1) {
     return seasons[3];
-  }
-  if (date == null) {
-    return 'Unable to determine the time of year!';
   }
 }
 
