@@ -1,4 +1,4 @@
-const { NotImplementedError } = require("../extensions/index.js");
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given two strings, find the number of common characters between them.
@@ -15,10 +15,9 @@ function getCommonCharacterCount(s1, s2) {
   // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
   let sum = 0;
-  let arr1 = s1.split("");
-  let arr2 = s2.split("");
+  let arr1 = s1.split('');
+  let arr2 = s2.split('');
   for (let i = 0; i < arr1.length; i++) {
-    console.log(arr2.indexOf(arr1[i]));
     if (arr2.indexOf(arr1[i]) > -1) {
       arr2.splice(arr2.indexOf(arr1[i]), 1);
       sum = sum + 1;

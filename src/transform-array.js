@@ -17,8 +17,16 @@ function transform(arr) {
   // throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
   if (!Array.isArray(arr)) {
-    return "'arr' parameter must be an instance of the Array!";
+    // return "'arr' parameter must be an instance of the Array!";
+    throw new Error("'arr' parameter must be an instance of the Array!");
   }
+  if (
+    !arr.includes('--double-next') &&
+    !arr.includes('--double-prev') &&
+    !arr.includes('--discard-prev') &&
+    !arr.includes('--discard-next')
+  )
+    return arr;
   let arrNew = [];
 
   for (let i = 0; i < arr.length; i++) {
@@ -29,16 +37,15 @@ function transform(arr) {
       arrNew.push(arr[i]);
     }
     if (arr[i] == '--double-prev') {
-      arrNew.push(arr[i - 1]);
+      arr[i - 1] !== undefined ? arrNew.push(arr[i - 1]) : i;
     }
     if (arr[i] == '--discard-prev') {
       arrNew.splice(i - 1, 1);
     }
     if (arr[i] == '--discard-next') {
-      arrNew.splice(i + 1, 1);
+      i = i + 2;
     }
   }
-  console.log('arr=', arr, 'arrNew=', arrNew);
   return arrNew;
 }
 
