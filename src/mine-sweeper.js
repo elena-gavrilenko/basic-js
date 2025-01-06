@@ -23,11 +23,51 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
+function minesweeper(matrix) {
+  //throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
+  let matrixNew = JSON.parse(JSON.stringify(matrix));
+
+  function sumTrue(arr) {
+    return arr.reduce((acc, el) => (el == true ? (acc += 1) : acc), 0);
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      let arr = [];
+      if (i == 0) {
+        arr.push(matrix[i][j - 1]);
+        arr.push(matrix[i][j + 1]);
+        arr.push(matrix[i + 1][j - 1]);
+        arr.push(matrix[i + 1][j]);
+        arr.push(matrix[i + 1][j + 1]);
+      } else if (i == matrix.length - 1) {
+        arr.push(matrix[i - 1][j - 1]);
+        arr.push(matrix[i - 1][j]);
+        arr.push(matrix[i - 1][j + 1]);
+        arr.push(matrix[i][j - 1]);
+        arr.push(matrix[i][j + 1]);
+      } else {
+        arr.push(matrix[i - 1][j - 1]);
+        arr.push(matrix[i - 1][j]);
+        arr.push(matrix[i - 1][j + 1]);
+        arr.push(matrix[i][j - 1]);
+        arr.push(matrix[i][j + 1]);
+        arr.push(matrix[i + 1][j - 1]);
+        arr.push(matrix[i + 1][j]);
+        arr.push(matrix[i + 1][j + 1]);
+      }
+
+      if (arr.includes(true)) {
+        matrixNew[i][j] = sumTrue(arr);
+      } else {
+        matrixNew[i][j] = 0;
+      }
+    }
+  }
+
+  return matrixNew;
 }
 
 module.exports = {
-  minesweeper
+  minesweeper,
 };
