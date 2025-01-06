@@ -33,7 +33,6 @@ function createDreamTeam(members) {
   if (arrNew.length == 0) {
     return false;
   } else {
-    console.log(arrNew);
     return arrNew.sort().join('');
   }
 }
